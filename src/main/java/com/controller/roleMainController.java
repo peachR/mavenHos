@@ -103,6 +103,6 @@ public class roleMainController {
 	
 	@RequestMapping(value="/releaseNews")
 	public String toReleaseNews(){
-		return "Root/releaseNews";
+		return "root/newsRelease";
 	}
 }
