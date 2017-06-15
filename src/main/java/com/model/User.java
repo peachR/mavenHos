@@ -1,4 +1,5 @@
 package com.model;
+import java.io.Serializable;
 /**
  * 用户模型
  * @author peach
@@ -6,7 +7,7 @@ package com.model;
  */
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 	private int id;
 	private String Number;
 	private String password;

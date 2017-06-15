@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -78,7 +81,9 @@ public class roleMainController {
 		//session.removeAttribute("loginUser");
 		User user = (User)session.getAttribute("loginUser");
 		userService.updateOnline(user, (byte)0);
-		session.invalidate();
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
+		//session.invalidate();
 	}
 	
 	/**

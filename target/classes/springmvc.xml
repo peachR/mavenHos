@@ -9,6 +9,8 @@
 
   <!--整合mybaits-->
   <import resource="spring-mybaits.xml" />
+  <!-- 整合shiro -->
+  <import resource="spring-shiro.xml"/>
 
   <!--扫描基包-->
   <context:component-scan base-package="com" />

@@ -42,11 +42,17 @@
 							<div class="form-group">
 								<input id="password" class="form-control" placeholder="Password" name="password" type="password" value="" />
 							</div>
-							<div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" />Remember Me
-                                </label>
-                            </div>
+							<div class="col-sm-10">
+								<div class="checkbox">
+                                		<label>
+                                    		<input name="remember" type="checkbox" />Remember Me
+                                		</label>
+                            		</div>							
+							</div>
+							<div class="col-sm-2">
+								<a href="/mavenHos/register">注册</a>
+							</div>
+							
                             <input type="button" class="btn btn-lg btn-success btn-block" value="Login"></a>
 						</form>
 					</div>

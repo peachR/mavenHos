@@ -16,6 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,7 +89,43 @@ public class LoginController {
 		String number = request.getParameter("email");
 		String psw = request.getParameter("password");
 		String remember = request.getParameter("remember");
-		User user = new User();
+		UsernamePasswordToken token = new UsernamePasswordToken(number,psw);
+		Subject subject = SecurityUtils.getSubject();
+		try{
+			subject.login(token);
+			User user = userService.getUserByNumber(number);
+			if(user != null){
+				Session session = subject.getSession();
+				session.setAttribute("loginUser", user);
+				//HttpSession session = request.getSession();
+				//session.setAttribute("loginUser", user);
+				this.userService.updateOnline(user, (byte) 1);
+				if(remember != null){
+					Cookie cookieUserName = new Cookie("userName", number);
+					Cookie cookiePassword = new Cookie("password", psw);
+					cookieUserName.setMaxAge(31 * 24 * 3600);
+					cookiePassword.setMaxAge(31 * 24 * 3600);
+					response.addCookie(cookieUserName);
+					response.addCookie(cookiePassword);
+				}else{
+					Cookie cookieUserName = new Cookie("userName", null);
+					cookieUserName.setMaxAge(0);
+					Cookie cookiePassword = new Cookie("password", null);
+					cookiePassword.setMaxAge(0);
+					response.addCookie(cookiePassword);
+					response.addCookie(cookieUserName);
+				}
+			}
+			return user.getRoles();
+		}catch (IncorrectCredentialsException ice){//密码错误异常
+			return new LinkedList<Role>();
+		} catch(UnknownAccountException uae){//用户名未知异常
+			return new LinkedList<Role>();
+		} catch(ExcessiveAttemptsException eae){//登录次数过多异常
+			return new LinkedList<Role>();
+		}
+		
+		/*User user = new User();
 		user.setNumber(number);
 		user.setPassword(psw);
 		User ruser = userService.getUser(user);
@@ -107,7 +151,7 @@ public class LoginController {
 			return ruser.getRoles();
 		}else{
 			return new LinkedList<Role>();
-		}
+		}*/
 	}
 	
 	/**
@@ -124,5 +168,14 @@ public class LoginController {
 		user.setRoleDescription(description);
 		map.put("age", 23);		
 		return "main/roleMain";
+	}
+	
+	/**
+	 * 跳转到注册界面
+	 * @return
+	 */
+	@RequestMapping(value="register")
+	public String toRegister(){
+		return "main/register";
 	}
 }

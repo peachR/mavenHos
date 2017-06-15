@@ -25,4 +25,15 @@ public class UserService {
 		this.userDao.updateOnline(user);
 	}
 	
+	public void addNewUser(User user){
+		this.userDao.insertUser(user);
+	}
+	
+	public boolean isUserExist(String number){
+		return this.userDao.isUserExist(number) > 0;
+	}
+	
+	public User getUserByNumber(String number){
+		return this.userDao.getUserByNumber(number);
+	}
 }
