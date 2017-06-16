@@ -33,4 +33,8 @@
   <insert id="insertUser">
   	INSERT INTO user(Number,Password,Name) VALUES(#{Number},#{password},#{Name});
   </insert>
+  <!-- 修改用户密码 -->
+  <update id="changeUserPassword">
+  	UPDATE user SET Password=#{password} WHERE Number=#{Number}
+  </update>
 </mapper>

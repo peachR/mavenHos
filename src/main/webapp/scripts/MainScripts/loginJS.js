@@ -88,7 +88,7 @@ function checkForm($thisElement){
 }
 
 function checkPassword($thisElement){
-	var rep = /^\w{6,15}$/;
+	var rep = /^\S{6,20}$/;
 	return rep.test($thisElement.val());
 }
 

@@ -36,4 +36,8 @@ public class UserService {
 	public User getUserByNumber(String number){
 		return this.userDao.getUserByNumber(number);
 	}
+	
+	public void changeUserPassword(User user){
+		this.userDao.changeUserPassword(user);
+	}
 }

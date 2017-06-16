@@ -42,19 +42,20 @@
 							<div class="form-group">
 								<input id="password" class="form-control" placeholder="Password" name="password" type="password" value="" />
 							</div>
-							<div class="col-sm-10">
+							<div class="col-sm-9">
 								<div class="checkbox">
                                 		<label>
                                     		<input name="remember" type="checkbox" />Remember Me
                                 		</label>
                             		</div>							
 							</div>
-							<div class="col-sm-2">
+							<div class="col-sm-3">
 								<a href="/mavenHos/register">注册</a>
 							</div>
 							
                             <input type="button" class="btn btn-lg btn-success btn-block" value="Login"></a>
 						</form>
+						<a href="/mavenHos/changePassword">修改密码</a>
 					</div>
 					<div class="panel-body tohidden">
 						<div class="form-group">

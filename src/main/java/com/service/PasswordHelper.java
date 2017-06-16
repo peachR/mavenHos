@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.model.User;
 
+/**
+ * 密码加密服务类
+ * @author peach
+ * @Timer 2017-06-16 10:16:41
+ */
 @Service
 public class PasswordHelper {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
@@ -22,5 +27,14 @@ public class PasswordHelper {
 				credentialsSalt,
 				hashIterations).toHex();
 		user.setPassword(newPassword);
+	}
+	
+	public String encryPassword(String number,String password){
+		ByteSource credentialsSalt = ByteSource.Util.bytes(number);
+		String newPassword = new SimpleHash(
+				algorithmName,password,
+				credentialsSalt,
+				hashIterations).toHex();
+		return newPassword;
 	}
 }

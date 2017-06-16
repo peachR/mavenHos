@@ -178,4 +178,9 @@ public class LoginController {
 	public String toRegister(){
 		return "main/register";
 	}
+	
+	@RequestMapping(value="changePassword")
+	public String toChangePassword(){
+		return "main/changePassword";
+	}
 }
