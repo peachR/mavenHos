@@ -20,4 +20,10 @@ public interface RoleDao {
 	 * @return 角色类
 	 */
 	public Role getRole(String name);
+	
+	/**
+	 * 返回所有角色并包含他的所有功能
+	 * @return 角色列表
+	 */
+	public List<Role> getAllRoleWithFunction();
 }

@@ -24,6 +24,9 @@
   		<result property="Description" column="Description" />
   	</collection>
   </resultMap>
+  <select id="getAllUser" resultMap="userMap">
+  	SELECT Number,Name user_Name,Office,Gender,Contact,Activate FROM user;
+  </select>
   <update id="updateOnline">
   	UPDATE user SET Online=#{on} WHERE id=#{id}
   </update>

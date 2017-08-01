@@ -7,7 +7,7 @@
 var usedParent = new Array();//存储已生成的导航栏父节点
 var informations = [];//消息json对象
 
-$(function(){
+/*$(function(){
   //根据角色生成对应导航栏
   CreateRoleNav();
   $("#navigation").bind("click",function(evt){
@@ -27,7 +27,7 @@ $(function(){
 		 });
 	 }
   });
-});
+});*/
 
 /**
  * 绑定注销按钮点击事件
@@ -89,7 +89,7 @@ function CreateRoleNav(){
  *根据角色获取导航
  *@param role 角色
  * **/
-function GetNav(role){
+/*function GetNav(role){
   $.ajax({
     type: "GET",
     url: "/mavenHos/user/GetNavAjax",
@@ -100,7 +100,7 @@ function GetNav(role){
       }
     }
   })
-}
+}*/
 
 /* **
  *根据返货导航的json对象生成导航栏

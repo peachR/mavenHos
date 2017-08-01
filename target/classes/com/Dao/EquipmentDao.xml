@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.Dao.EquipmentDao">
+	<resultMap id="equipmentMap" type="com.model.Equipment">
+		<id property="id" column="ID" />
+		<result property="name" column="Name" />
+		<result property="state" column="State" />
+		<result property="timeLength" column="TimeLength" />
+		<result property="beginTimeAM" column="BeginTimeAM" />
+		<result property="endTimeAM" column="EndTimeAM" />
+		<result property="beginTimePM" column="BeginTimePM" />
+		<result property="endTimePM" column="EndTimePM" />
+		<result property="treatmentItem" column="TreatmentItem" />
+		<result property="equipmentType" column="Type" />
+	</resultMap>
+	
+	<select id="getAllEquipment" resultMap="equipmentMap">
+		SELECT equipment.ID,equipment.Name,equipment.State,equipment.TimeLength,
+		equipment.BeginTimeAM,equipment.EndTimeAM,equipment.BegTimePM,
+		equipment.EndTimeTPM,equipment.TreatmentItem,equipmenttype.Type 
+		FROM equipment Left JOIN equipmenttype ON equipment.EquipmentType=equipmenttype.ID
+	</select>
+	
+	<insert id="AddNewEquipment" parameterType="com.model.Equipment" useGeneratedKeys="true" keyColumn="ID" keyProperty="equipment.id">
+		INSERT INTO equipment(Name,State,TimeLength,BeginTimeAM,EndTimeAM,BegTimePM,EndTimeTPM,TreatmentItem,EquipmentType) 
+		VALUES(#{equipment.name},#{equipment.state},#{equipment.timeLength},#{equipment.beginTimeAM},#{equipment.endTimeAM},#{equipment.beginTimePM},#{equipment.endTimePM},#{equipment.treatmentItem},#{equipment.typeID});
+	</insert> 
+	
+	<insert id="AddNewEquipments" useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
+		INSERT INTO euqipment(name) VALUES(${s})
+	</insert>
+</mapper>

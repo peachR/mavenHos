@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.Dao.FunctionDao">
+	<resultMap type="com.model.Function" id="functionMap">
+		<id property="id" column="function_ID" />
+		<result property="name" column="function_name" />
+		<association property="navigation" javaType="com.model.Navigation">
+			<id property="id" column="navigation_ID" />
+			<result property="name" column="nav_name"/>
+			<result property="icon" column="Icon" />
+			<result property="url" column="Url" />
+			<result property="node" column="Node" />
+			<result property="parent" column="Parent" />
+		</association>
+	</resultMap>
+	<select id="getAllFunction" resultMap="functionMap">
+		SELECT function.ID function_ID,function.Name function_name,
+		navigation.ID navigation_ID,navigation.Name nav_name,navigation.Icon,
+		navigation.Url,navigation.Node,navigation.Parent FROM function 
+		LEFT JOIN navigation ON function.Navigation_ID=navigation.ID
+	</select>
+</mapper>

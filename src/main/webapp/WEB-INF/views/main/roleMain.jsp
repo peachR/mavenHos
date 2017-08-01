@@ -309,9 +309,91 @@
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul id="navigation" class="sidebar-menu">
-        <li class="header">欢迎使用</li>
-        
+      <ul id="menu" class="sidebar-menu">
+        <li class="header">管理员导航</li>
+        <li class="active">
+          <a href="/mavenHos/user/RoleMain?role=Root">
+            <i class="fa fa-coffee fa-fw"></i> <span>主页</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pencil-square-o fa-fw"></i> <span>消息模块</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Root-InfoManage.aspx"><i class="fa fa-circle-o"></i> 消息管理</a></li>
+            <li><a href="Root-information.aspx"><i class="fa fa-circle-o"></i> 消息发布</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user fa-fw"></i> <span>用户管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Root-userInformation.aspx"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+            <li><a href="Root-user2role.aspx"><i class="fa fa-circle-o"></i>用户绑定</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-group fa-fw"></i>
+            <span>角色管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href="/mavenHos/user/roleManage"><i class="fa fa-circle-o"></i> 角色信息</a></li>
+              <li><a href="Root-function2role.aspx"><i class="fa fa-circle-o"></i>功能绑定</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-sitemap fa-fw"></i>
+            <span>设备管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Root-equipment.aspx"><i class="fa fa-circle-o"></i> 设备管理</a></li>
+            <li><a href="EquipmentTypeManage.aspx"><i class="fa fa-circle-o"></i>设备类型管理</a></li>
+            <li><a href="Root-EquipmentInspectionManage.aspx"><i class="fa fa-circle-o"></i> 设备检查管理</a></li>
+            <li><a href="Root_EquipmentInspection.aspx"><i class="fa fa-circle-o"></i> 设备检查</a></li>
+            <li><a href="Root-EquipmentInspectionResult.aspx"><i class="fa fa-circle-o"></i> 设备检查结果</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="Root-function.aspx">
+            <i class="fa fa-coffee fa-fw"></i> <span>功能管理</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/mavenHos/root/group">
+            <i class="fa fa-group"></i> <span>分组管理</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li>
+            <a href="Root-parameterSetting.aspx">
+                <i class="fa fa-group"></i> <span>基本信息管理</span>
+                <span class="pull-right-container">
+                </span>
+            </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

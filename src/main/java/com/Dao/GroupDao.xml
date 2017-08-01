@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.Dao.GroupDao">
+	<resultMap id="groupMap" type="com.model.Group">
+		<id property="groupID" column="GroupID" />
+		<result property="name" column="groupName" />
+		<collection property="member" ofType="com.model.User">
+			<id property="id" column="UserID" />
+			<result property="Name" column="Name" />
+			<result property="identity" column="identity" />
+		</collection>
+	</resultMap>
+	
+	<select id="getGroup" resultMap="groupMap">
+		SELECT user.Name,user.ID UserID,groups.ID GroupID,groups.groupName,groups2user.identity 
+		FROM user RIGHT JOIN groups2user ON user.ID=groups2user.User_ID 
+		RIGHT JOIN groups ON groups2user.Group_ID=groups.ID ORDER BY GroupID,identity
+	</select>
+	
+	<insert id="addNewGroup" useGeneratedKeys="true" keyColumn="ID" keyProperty="group.groupID">
+		INSERT INTO groups(groupName) VALUES(#{group.name});
+	</insert>
+	<insert id="fillNewGroup">
+		INSERT INTO groups2user(User_ID,Group_ID,identity) VALUES
+		<foreach item="item" collection="identity" separator="," index="index">
+			(#{index},#{groupID},#{item})
+		</foreach>
+	</insert>
+	<update id="updateGroupName" parameterType="com.model.Group">
+		UPDATE groups SET groupName=#{group.name} WHERE ID=#{group.groupID}
+	</update>
+	
+	<delete id="deleteGroupMember">
+		DELETE FROM groups2user WHERE Group_ID=#{groupID}
+	</delete>
+	
+</mapper>

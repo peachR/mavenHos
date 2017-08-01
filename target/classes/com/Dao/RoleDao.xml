@@ -11,10 +11,24 @@
 	<select id="getRole" resultMap="roleMap">
 		SELECT * FROM role WHERE Name=#{name}
 	</select>
+	<!-- 获取所有角色包括其功能信息 -->
+	<select id="getAllRoleWithFunction" resultMap="roleFunctionMap">
+		SELECT role.ID,role.Name,role.Description,function.Name function_name 
+		FROM role LEFT JOIN function2role ON role.ID=function2role.Role_ID 
+		LEFT JOIN function ON function2role.Function_ID=function.ID 
+		ORDER BY role.ID
+	</select>
 	<resultMap id="roleMap" type="com.model.Role">
 		<id property="id" column="ID"/>
 		<result property="Name" column="Name" />
 		<result property="Description" column="Description" />
+	</resultMap>
+	
+	<resultMap id="roleFunctionMap" type="com.model.Role" extends="roleMap">
+		<collection property="functions" ofType="com.model.Function">
+		<id property="id" column="functionID" />
+		<result property="name" column="function_name" />
+		</collection>
 	</resultMap>
 	
 </mapper>

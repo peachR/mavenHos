@@ -1,4 +1,6 @@
 package com.service;
+import java.util.List;
+
 /**
  * 用户服务层
  * @author peach
@@ -39,5 +41,9 @@ public class UserService {
 	
 	public void changeUserPassword(User user){
 		this.userDao.changeUserPassword(user);
+	}
+	
+	public List<User> getAllUser(){
+		return userDao.getAllUser();
 	}
 }

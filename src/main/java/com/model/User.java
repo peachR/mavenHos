@@ -19,6 +19,7 @@ public class User implements Serializable {
 	private String currentRole;
 	private String roleDescription;
 	private byte on;
+	private int identity;
 	
 	
 	public void setId(int id){
@@ -65,6 +66,10 @@ public class User implements Serializable {
 		this.roleDescription = roleDescription;
 	}
 	
+	public void setIdentity(int identity){
+		this.identity = identity;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
@@ -107,5 +112,9 @@ public class User implements Serializable {
 	
 	public String getOffice(){
 		return this.office;
+	}
+	
+	public int getIdentity(){
+		return this.identity;
 	}
 }

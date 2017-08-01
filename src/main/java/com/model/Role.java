@@ -12,6 +12,7 @@ public class Role implements Serializable {
 	private String Name;//角色名
 	private String Description;//角色描述中文
 	private List<User> users;
+	private List<Function> functions;
 	
 	public void setName(String Name){
 		this.Name =Name;
@@ -29,6 +30,10 @@ public class Role implements Serializable {
 		this.users = users;
 	}
 	
+	public void setFunction(List<Function> functions){
+		this.functions = functions;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
@@ -43,5 +48,9 @@ public class Role implements Serializable {
 	
 	public List<User> getUsers(){
 		return this.users;
+	}
+	
+	public List<Function> getFunctions(){
+		return this.functions;
 	}
 }

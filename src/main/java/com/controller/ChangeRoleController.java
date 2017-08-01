@@ -20,7 +20,7 @@ import com.model.User;
 
 @Controller
 @RequestMapping(value="/user/changeRole")
-public class changeRoleController {
+public class ChangeRoleController {
 	/**
 	 * 响应获取登录用户角色请求
 	 * @param request jsp request对象

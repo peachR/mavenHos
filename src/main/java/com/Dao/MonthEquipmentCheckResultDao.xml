@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.Dao.MonthEquipmentCheckResultDao">
+	<select id="getEquipmentCheckResult" resultMap="checkMap">
+		SELECT inspection.ChildItem,checkresult.IMRTRealValue,checkrecord.checkDate 
+		FROM inspection LEFT JOIN checkresult ON inspection.ID=checkresult.Inspection_ID 
+		LEFT JOIN checkrecord ON checkresult.Record_ID=checkrecord.ID 
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="cycle == 'day' || cycle == 'month' || cycle == 'year'">
+				checkrecord.checkCycle=#{cycle} 
+			</if>
+			<if test="date != null">
+				AND DATE_FORMAT(checkrecord.checkDate,'%Y-%m')=#{date} 
+			</if>
+			<if test="equipmentID >= 0">
+				AND checkrecord.Equipment_ID=#{equipmentID} 
+			</if>
+		</trim>
+	</select>
+	
+	<resultMap type="com.model.MonthEquipmentCheckResult" id="checkMap">
+		<id property="item" column="ChildItem" />
+		<result property="result" column="IMRTRealValue" />
+		<result property="date" column="checkDate" />
+	</resultMap>
+</mapper>
